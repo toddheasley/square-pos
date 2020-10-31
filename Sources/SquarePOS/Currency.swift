@@ -54,3 +54,12 @@ extension Currency: CaseIterable {
         return [.aud, .cad, .usd]
     }
 }
+
+extension Currency: Encodable {
+    
+    // MARK: Encodable
+    public func encode(to encoder: Encoder) throws {
+        var container: SingleValueEncodingContainer = encoder.singleValueContainer()
+        try container.encode(code)
+    }
+}

@@ -1,6 +1,6 @@
 import XCTest
 @testable import SquarePOS
 
-final class SquarePOSTests: XCTestCase {
+final class ResponseTests: XCTestCase {
     
 }

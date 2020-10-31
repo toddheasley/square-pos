@@ -1,5 +1,5 @@
 import Foundation
 
-extension URLRequest {
+public struct Response {
     
 }

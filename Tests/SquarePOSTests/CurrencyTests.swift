@@ -4,7 +4,7 @@ import XCTest
 final class CurrencyTests: XCTestCase {
     func testISO4217Init() {
         XCTAssertEqual(Currency(iso4217: "USD"), .usd)
-        XCTAssertNil(Currency(iso4217: "FOO"))
+        XCTAssertNil(Currency(iso4217: ""))
     }
     
     func testFromISO4217() {
@@ -49,3 +49,15 @@ extension CurrencyTests {
         XCTAssertEqual(Currency.allCases, [.aud, .cad, .usd])
     }
 }
+
+extension CurrencyTests {
+    
+    // MARK: Encodable
+    func testEncode() {
+        XCTAssertEqual(try JSONEncoder().encode(Currency.usd), CurrencyTests_Data)
+    }
+}
+
+private let CurrencyTests_Data: Data = """
+"USD"
+""".data(using: .utf8)!
