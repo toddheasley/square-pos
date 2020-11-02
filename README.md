@@ -43,7 +43,7 @@ Also in the main bundle `Info.plist`,  add the Square custom URL scheme `square-
 
 ### Square Configuration
 
-From the [Square Developer Dashboard](https://developer.squareup.com/apps/), create a new developer application (or choose an existing one). Add app bundle ID and custom URL scheme to the Point of Sale API configuration.
+From the [Square developer dashboard](https://developer.squareup.com/apps/), create a new developer application (or choose an existing one). Add app bundle ID and custom URL scheme to the Point of Sale API configuration.
 
 Next, configure `SquarePOS` with the developer application ID:
 
@@ -54,7 +54,7 @@ import SquarePOS
 SquarePOS.app.id = "sqU@r3-aPP1ic@+i0n-iD"
 ```
 
-`SquarePOS`  attempts to read the custom URL scheme directly from `Bundle`, but may need to be set explicitly in some cases:
+`SquarePOS`  attempts to read the custom URL scheme directly from `Bundle`, but scheme may need to be set explicitly in some cases:
 
 ```swift
 import Foundation
