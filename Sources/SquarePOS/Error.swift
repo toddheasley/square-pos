@@ -29,6 +29,10 @@ extension Error: CaseIterable {
         return Self(id: "app_id_missing", description: "Square developer application ID is not configured")
     }
     
+    public static var appSchemeNotFound: Self {
+        return Self(id: "app_scheme_missing", description: "Square requires a callback app URL scheme")
+    }
+    
     public static var appNotInstalled: Self {
         return Self(id: "app_not_installed", description: "Square app is not installed")
     }
@@ -103,16 +107,6 @@ extension Error: CaseIterable {
     
     // MARK: CaseIterable
     public static var allCases: [Self] {
-        return [.appIDNotFound, .appNotInstalled, .appNotActive, .accountNotActive, .currencyNotAccepted, .currencyNotSupported, .currencyNotFound, .amountTooSmall, .amountTooLarge, .amountNotValid, .tenderNotSupported, .tenderNotFound, .networkNotConnected, .versionNotSupported, .versionNotFound, .customerManagementNotSupported, .customerNotFound, .paymentCanceled, .dataNotValid]
-    }
-}
-
-extension Error: Decodable {
-    
-    // MARK: Decodable
-    public init(from decoder: Decoder) throws {
-        let container: SingleValueDecodingContainer = try decoder.singleValueContainer()
-        let id: String =  try container.decode(String.self)
-        self = Self(id: id) ?? .dataNotValid
+        return [.appIDNotFound, .appSchemeNotFound, .appNotInstalled, .appNotActive, .accountNotActive, .currencyNotAccepted, .currencyNotSupported, .currencyNotFound, .amountTooSmall, .amountTooLarge, .amountNotValid, .tenderNotSupported, .tenderNotFound, .networkNotConnected, .versionNotSupported, .versionNotFound, .customerManagementNotSupported, .customerNotFound, .paymentCanceled, .dataNotValid]
     }
 }

@@ -9,6 +9,7 @@ final class ErrorTests: XCTestCase {
     
     func testFromID() {
         XCTAssertEqual(Error.from(id: "app_id_missing"), .appIDNotFound)
+        XCTAssertEqual(Error.from(id: "app_scheme_missing"), .appSchemeNotFound)
         XCTAssertEqual(Error.from(id: "app_not_installed"), .appNotInstalled)
         XCTAssertEqual(Error.from(id: "not_logged_in"), .appNotActive)
         XCTAssertEqual(Error.from(id: "user_not_active"), .accountNotActive)
@@ -35,19 +36,6 @@ extension ErrorTests {
     
     // MARK: CaseIterable
     func testAllCases() {
-        XCTAssertEqual(Error.allCases, [.appIDNotFound, .appNotInstalled, .appNotActive, .accountNotActive, .currencyNotAccepted, .currencyNotSupported, .currencyNotFound, .amountTooSmall, .amountTooLarge, .amountNotValid, .tenderNotSupported, .tenderNotFound, .networkNotConnected, .versionNotSupported, .versionNotFound, .customerManagementNotSupported, .customerNotFound, .paymentCanceled, .dataNotValid])
+        XCTAssertEqual(Error.allCases, [.appIDNotFound, .appSchemeNotFound, .appNotInstalled, .appNotActive, .accountNotActive, .currencyNotAccepted, .currencyNotSupported, .currencyNotFound, .amountTooSmall, .amountTooLarge, .amountNotValid, .tenderNotSupported, .tenderNotFound, .networkNotConnected, .versionNotSupported, .versionNotFound, .customerManagementNotSupported, .customerNotFound, .paymentCanceled, .dataNotValid])
     }
 }
-
-extension ErrorTests {
-    
-    // MARK: Decodable
-    func testDecoderInit() {
-        XCTAssertEqual(try JSONDecoder().decode(Error.self, from: ErrorTests_Data), .paymentCanceled)
-        XCTAssertEqual(try JSONDecoder().decode(Error.self, from: "\"foo\"".data(using: .utf8)!), .dataNotValid)
-    }
-}
-
-private let ErrorTests_Data: Data = """
-"payment_canceled"
-""".data(using: .utf8)!
