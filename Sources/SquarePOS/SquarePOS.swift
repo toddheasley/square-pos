@@ -22,7 +22,7 @@ extension SquarePOS {
             }
         }
         return NotificationCenter.default.publisher(for: paymentNotification)
-            .compactMap { ($0.object as? URL)?.response }
+            .compactMap { $0.object as? Response }
             .eraseToAnyPublisher()
     }
     
